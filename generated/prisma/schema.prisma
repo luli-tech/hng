@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./src/config/country.db"
+}
+
+model Country {
+  id                Int       @id @default(autoincrement())
+  name              String    @unique
+  capital           String?
+  region            String?
+  population        Int
+  currency_code     String?
+  exchange_rate     Float?
+  estimated_gdp     Float?
+  flag_url          String?
+  last_refreshed_at DateTime?
+}
+
+model Meta {
+  id                Int      @id @default(1)
+  total_countries   Int
+  last_refreshed_at DateTime
+  summary_svg       String?
+}
